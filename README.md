@@ -1,4 +1,4 @@
-# Software Studio Assignment 6
+# Software Studio Final Project Group22
 
 ## Notes
 + You will have to import the libraries on your own. All the libraries are provided on iLMS.
