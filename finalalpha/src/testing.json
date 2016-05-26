@@ -1,0 +1,9 @@
+JSON structure:
+[
+  {"engword":  "apple",
+"locword":  "appleÄ«ªG"
+},
+ {"engword":  "banana",
+"locword":  "banana­»¿¼"
+}
+]
