@@ -5,17 +5,27 @@ import java.util.Random;
 
 import de.looksgood.ani.Ani;
 import processing.core.PApplet;
+import processing.core.PFont;
 
 @SuppressWarnings("serial")
 public class mainApplet extends PApplet{
 	private final static int rectWidth = 1000, rectHeight = 70;
-
+	private Upperapplet upperapplet;
 	private int x1, y1, x2, y2;
 	private int n,sec;
 	private boolean end = true;
 	private boolean barct=false;
 	//private Object barctlock=new Object();
 	Random r = new Random();
+	PFont myFont;
+	public void setUpperapplet(Upperapplet applet)
+	{
+		this.upperapplet=applet;
+	}
+	public Upperapplet getUpperapplet()
+	{
+		return this.upperapplet;
+	}
 	public void setbarct(boolean b)
 	{
 		
@@ -45,6 +55,9 @@ public class mainApplet extends PApplet{
 			checkfill[i] = true;
 		}
 		n = 1;sec = 9;
+		myFont = createFont("標楷體",100);
+		  /* 直接輸入字型名稱，只要電腦有安裝該自行即可顯示 */
+		  textFont(myFont);
 	}
 	public void draw(){
 		background(255);
@@ -54,7 +67,11 @@ public class mainApplet extends PApplet{
 		stroke(167);
 		rect(x1, y1, rectWidth, rectHeight);		//x:100~1100
 
-		
+		this.fill(0,0,0);
+		textSize(26);
+		this.text("輸入對應的英文單字，在滾輪滑過磚塊時按下ENTER鍵以消除並獲取分數",100,250);
+		this.text("開頭需大寫，add可增加螢幕上顯示的單字量，skip可隨機跳過一字",150,300);
+		this.text("磚塊填滿底部時，遊戲結束",250,350);
 		
 		GregorianCalendar g = new GregorianCalendar(); 		//block
 		
@@ -90,7 +107,7 @@ public class mainApplet extends PApplet{
 		if(barct){
 		fill(87,255,87);		//動感棒棒
 		}else{
-			fill(0,0,0);
+			fill(87,255,87);
 		}
 		rect(x2, y2, 10, 130);
 		
@@ -128,6 +145,7 @@ public class mainApplet extends PApplet{
 					checkfill[i] = false;
 				}if(this.getbarct()){
 				blocks.remove(j);
+				this.upperapplet.addscore(1);
 				barct=false;
 				}
 			}

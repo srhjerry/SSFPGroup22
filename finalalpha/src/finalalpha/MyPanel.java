@@ -20,16 +20,17 @@ import processing.core.PSurface;
 
 
 public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListener {
-	Upperapplet applet;
+	private Upperapplet applet;
     private ArrayList<question> storedlist;
     private JTextField textfield;
     private JButton buttona;
     private JPanel Southpanel;
     private boolean start=false;
     private mainApplet low;
-	
-	
-	
+  
+	public Upperapplet getapplet(){
+		return this.applet;
+	}
 	
 	public MyPanel(){
 	//   questionlist=new ArrayList<question>(); 

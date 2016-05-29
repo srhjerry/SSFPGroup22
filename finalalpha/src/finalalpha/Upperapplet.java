@@ -32,7 +32,16 @@ public class Upperapplet extends PApplet{
 	private ControlP5 cp5;
 	private int myColorBackground;
 	private int qindex=0;
-	
+	  private int score=0;
+	  private int skipchance=3;
+		
+		public int getscore(){
+			return this.score;
+		}
+		public void addscore(int i){
+			this.score=getscore()+i;
+		}
+		
 	public void setup() {
 		System.out.println("HelloWorld");
 		size(1200, 570);
@@ -65,6 +74,7 @@ public class Upperapplet extends PApplet{
 		
 	}
 	public void skip(){
+		if(this.skipchance>0){
 		Iterator<question> aciter=questionac.iterator();
 		if(aciter.hasNext()){
 		question temp=aciter.next();
@@ -73,7 +83,8 @@ public class Upperapplet extends PApplet{
 		this.addquestionac(this.getquestionlist().get(this.getqindex()));
 		this.addqindex();	
 		}
-		
+		this.skipchance--;
+		}
 	}
 	
 	/*
@@ -89,6 +100,10 @@ public class Upperapplet extends PApplet{
 		  fill(myColorBackground);
 
 		  popMatrix();
+		  this.fill(0,255,0);
+			textSize(26);
+			this.text("Score: "+this.getscore(),0,50);
+			this.text("SkipChance: "+this.skipchance,0,100);
 		  
 		  Iterator<question> iterator = questionac.iterator();
 		  while(iterator.hasNext()){
