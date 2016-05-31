@@ -74,7 +74,7 @@ public class MyWindow extends JFrame implements ActionListener{
 						applet.setFocusable(true);
 						lowpanel.add(applet);
 
-					  JFrame window2 = new JFrame("TESTING");
+					  JFrame window2 = new JFrame("GAMING");
 				//	window2.setLayout(new GridLayout(2,1));
 					  window2.setLayout(new BorderLayout());
 					window2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
