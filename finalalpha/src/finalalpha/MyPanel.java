@@ -100,7 +100,7 @@ public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListen
 				this.textfield.setText("");
 			}else{
 				applet.resetcombo();
-				JOptionPane.showMessageDialog(null," Doesn't match!",
+				JOptionPane.showMessageDialog(null," Hint: First word is "+this.applet.getquestionac().get(0).getlocword().charAt(0)+"\n"+"Last word is "+this.applet.getquestionac().get(0).getlocword().charAt(this.applet.getquestionac().get(0).getlocword().length()-1),
                         "Wrong", JOptionPane.WARNING_MESSAGE);
 			}
 	}
