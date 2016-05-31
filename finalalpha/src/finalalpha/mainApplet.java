@@ -13,6 +13,8 @@ public class mainApplet extends PApplet{
 	private Upperapplet upperapplet;
 	private int x1, y1, x2, y2;
 	private int n,sec;
+	private int green=0;
+	private int black=0;
 	private boolean end = true;
 	private boolean barct=false;
 	//private Object barctlock=new Object();
@@ -71,7 +73,7 @@ public class mainApplet extends PApplet{
 		textSize(26);
 		this.text("輸入對應的英文單字，在滾輪滑過磚塊時按下ENTER鍵以消除並獲取分數",100,250);
 		this.text("開頭需大寫，add可增加螢幕上顯示的單字量，skip可隨機跳過一字",150,300);
-		this.text("磚塊填滿底部時，遊戲結束",250,350);
+		this.text("藍色方塊可獲得跳過機會以及額外分數，綠色可加快滾軸，灰色會使滾軸速度下降",150,350);
 		
 		GregorianCalendar g = new GregorianCalendar(); 		//block
 		
@@ -110,11 +112,16 @@ public class mainApplet extends PApplet{
 			fill(87,255,87);
 		}
 		rect(x2, y2, 10, 130);
-		
+	/*	
 		if(x2 == 100 )
-			Ani.to(this, (float) 2, "x2", 1100, Ani.LINEAR);
+			Ani.to(this, (float) (2.5), "x2", 1100, Ani.LINEAR);
 		if(x2 == 1100)
-			Ani.to(this, (float) 2, "x2", 100, Ani.LINEAR);
+			Ani.to(this, (float) (2.5), "x2", 100, Ani.LINEAR);
+	*/
+		if(x2 == 100 )
+			Ani.to(this, (float) ((float)2.5+(float)((float)0.5*(black-green))), "x2", 1100, Ani.LINEAR);
+		if(x2 == 1100)
+			Ani.to(this, (float) ((float)2.5+(float)((float)0.5*(black-green))), "x2", 100, Ani.LINEAR);
 		
 		
 		if(keyPressed){
@@ -144,7 +151,22 @@ public class mainApplet extends PApplet{
 				for(int i=low ; i <= up ; i++){
 					checkfill[i] = false;
 				}if(this.getbarct()){
+				if(blocks.get(j).getcolor()==0)
+				{
+					upperapplet.addskipchance(1);
+					this.upperapplet.addscore(3-1);
+				}else if(blocks.get(j).getcolor()==1)
+				{
+					if((this.green-this.black)<4)
+					this.green++;
+					this.upperapplet.addscore(3-1);
+				}else if(blocks.get(j).getcolor()==2)
+				{
+					this.black++;
+					this.upperapplet.addscore(3-1);
+				}
 				blocks.remove(j);
+				upperapplet.addcombo(1);
 				this.upperapplet.addscore(1);
 				barct=false;
 				}

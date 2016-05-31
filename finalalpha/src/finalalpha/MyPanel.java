@@ -98,6 +98,7 @@ public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListen
 				low.setbarct(true);
 				this.textfield.setText("");
 			}else{
+				applet.resetcombo();
 				JOptionPane.showMessageDialog(null," Doesn't match!",
                         "Wrong", JOptionPane.WARNING_MESSAGE);
 			}

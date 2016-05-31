@@ -34,12 +34,25 @@ public class Upperapplet extends PApplet{
 	private int qindex=0;
 	  private int score=0;
 	  private int skipchance=3;
+	  private int combo=0;
 		
+	  public int getcombo(){
+		  return this.combo;
+	  }
+	  public void addcombo(int i){
+		  this.combo=this.getcombo()+i;
+	  }
+	  public void resetcombo(){
+		  this.combo=0;
+	  }
 		public int getscore(){
 			return this.score;
 		}
 		public void addscore(int i){
 			this.score=getscore()+i;
+		}
+		public void addskipchance(int i){
+			this.skipchance=this.skipchance+i;
 		}
 		
 	public void setup() {
@@ -104,6 +117,7 @@ public class Upperapplet extends PApplet{
 			textSize(26);
 			this.text("Score: "+this.getscore(),0,50);
 			this.text("SkipChance: "+this.skipchance,0,100);
+			this.text("Combo: "+this.getcombo(),0,150);
 		  
 		  Iterator<question> iterator = questionac.iterator();
 		  while(iterator.hasNext()){
