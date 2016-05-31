@@ -157,8 +157,9 @@ public class mainApplet extends PApplet{
 					this.upperapplet.addscore(3-1);
 				}else if(blocks.get(j).getcolor()==1)
 				{
-					if((this.green-this.black)<4)
+					if((this.green-this.black)<4){
 					this.green++;
+					}
 					this.upperapplet.addscore(3-1);
 				}else if(blocks.get(j).getcolor()==2)
 				{
