@@ -17,7 +17,7 @@ import processing.data.JSONObject;
 @SuppressWarnings("serial")
 public class Upperapplet extends PApplet{
 //	private String path = "gept-basic.json";
-
+    mainApplet low;
     private ArrayList<question> questionlist;
     private ArrayList<question> questionac;
 //	private String file = "main/resources/data.json";
@@ -34,9 +34,19 @@ public class Upperapplet extends PApplet{
 	private int qindex=0;
 	  private int score=0;
 	  private int skipchance=3;
-	  private int combo=0;
+	  private int combo=10;
 	  private int start;
-		
+	  private boolean doomsayer=false;
+	  public void setlow(mainApplet applet){
+		  this.low=applet;
+	  }
+	public boolean getdoom(){
+		return this.doomsayer;
+	}
+	public void setdoom(boolean temp){
+		this.doomsayer=temp;
+	}
+	  
 	  public int getcombo(){
 		  return this.combo;
 	  }
@@ -67,6 +77,7 @@ public class Upperapplet extends PApplet{
 		cp5=new ControlP5(this);
 		cp5.addButton("skip").setLabel("skip").setPosition(1000,10).setSize(100, 40);
 		cp5.addButton("more").setLabel("more").setPosition(1000,10+50).setSize(100, 40);
+		cp5.addButton("doom").setLabel("Doom!").setPosition(1000,10+100).setSize(100, 40);
 		myFont = createFont("標楷體",100);
 		  /* 直接輸入字型名稱，只要電腦有安裝該自行即可顯示 */
 		  textFont(myFont);
@@ -102,6 +113,13 @@ public class Upperapplet extends PApplet{
 		this.addqindex();	
 		}
 		this.skipchance--;
+		}
+	}
+	public void doom(){
+		if(combo>=10){
+			this.low.blocks.clear();
+			this.combo=0;
+			this.doomsayer=true;
 		}
 	}
 	

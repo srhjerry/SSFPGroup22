@@ -66,6 +66,7 @@ public class MyWindow extends JFrame implements ActionListener{
 					  MyPanel panel=new MyPanel(this.getstart());
 						JPanel lowpanel=new JPanel();
 						mainApplet applet = new mainApplet();
+						panel.getapplet().setlow(applet);
 						applet.setUpperapplet(panel.getapplet());
 						applet.init();
 						applet.start();

@@ -62,6 +62,12 @@ public class mainApplet extends PApplet{
 		  textFont(myFont);
 	}
 	public void draw(){
+		this.clear();
+		if(upperapplet.getdoom())
+		{
+			
+			upperapplet.setdoom(false);
+		}else{
 		background(255);
 		
 		noFill();				// 外框
@@ -71,8 +77,9 @@ public class mainApplet extends PApplet{
 
 		this.fill(0,0,0);
 		textSize(26);
-		this.text("輸入對應的英文單字，在滾輪滑過磚塊時按下ENTER鍵以消除並獲取分數",100,250);
-		this.text("開頭需大寫，add可增加螢幕上顯示的單字量，skip可隨機跳過一字",150,300);
+		this.text("輸入對應的英文單字，在滾輪滑過磚塊時按下ENTER鍵以消除並獲取分數",100,200);
+		this.text("開頭需大寫，add可增加螢幕上顯示的單字量，skip可隨機跳過一字",100,250);
+		this.text("Doom可以在combo>=10時摧毀所有磚塊，然而並不會因此獲得分數且消耗所有combo",100,300);
 		this.text("藍色方塊可獲得跳過機會以及額外分數，綠色可加快滾軸，灰色會使滾軸速度下降",150,350);
 		
 		GregorianCalendar g = new GregorianCalendar(); 		//block
@@ -93,7 +100,10 @@ public class mainApplet extends PApplet{
 					checkfill[j] = true;
 				}
 			}
-			sec--;n++;
+			sec--;
+			if(n<4){
+				n++;
+			}
 			//System.out.println(g.get(GregorianCalendar.SECOND) + " " + sec);
 			
 		}
@@ -137,6 +147,7 @@ public class mainApplet extends PApplet{
 		if(end == true) end();
 		end = true;
 		
+		}
 	}
 	public void mousePressed(){
 		
@@ -167,10 +178,11 @@ public class mainApplet extends PApplet{
 					this.upperapplet.addscore(3-1);
 				}
 				blocks.remove(j);
-				upperapplet.addcombo(1);
+				this.upperapplet.addcombo(1);
 				this.upperapplet.addscore(1);
 				barct=false;
 				}
+				
 			}
 		}
 		barct=false;
