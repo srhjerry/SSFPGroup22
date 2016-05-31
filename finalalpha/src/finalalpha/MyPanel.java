@@ -32,7 +32,7 @@ public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListen
 		return this.applet;
 	}
 	
-	public MyPanel(){
+	public MyPanel(int start){
 	//   questionlist=new ArrayList<question>(); 
 	   this.textfield=new JTextField();
 	   this.textfield.setSize(1000, 100);
@@ -47,6 +47,7 @@ public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListen
 	   Southpanel.add(textfield);
 	   Southpanel.add(buttona);
 	    this.applet = new Upperapplet();
+	    this.applet.setdata(start);
 		 this.textfield.addKeyListener(this);
 	  
 	   this.applet.setFocusable(true);
@@ -103,22 +104,7 @@ public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListen
                         "Wrong", JOptionPane.WARNING_MESSAGE);
 			}
 	}
-   public static void main(String [] args){
-	   final int windowWidth = 1200;
-	final int windowHeight = 670; 
-	
-	   MyPanel panel=new MyPanel();
-	
-
-		  JFrame window = new JFrame("TESTING");
-		
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setSize(windowWidth, windowHeight);
-	//	window.setContentPane(applet);
-		window.add(panel);
-		window.setVisible(true);
-		
-   }
+   
 @Override
 public void keyPressed(KeyEvent e) {
 	// TODO Auto-generated method stub

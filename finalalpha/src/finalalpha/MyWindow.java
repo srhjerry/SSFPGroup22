@@ -12,6 +12,11 @@ public class MyWindow extends JFrame implements ActionListener{
 		private JMenu menu, gept;
 		private JMenuItem[] item;
 		private JMenuBar bar;
+		private int start;
+		
+		public int getstart(){
+			return this.start;
+		}
 		
 		public MyWindow(){
 			this.setTitle("HomePage");
@@ -57,8 +62,8 @@ public class MyWindow extends JFrame implements ActionListener{
 				if(event.getSource() == button[0]){
 					final int windowWidth = 1200;
 					final int windowHeight = 900; 
-					this.dispose();;
-					  MyPanel panel=new MyPanel();
+					this.dispose();
+					  MyPanel panel=new MyPanel(this.getstart());
 						JPanel lowpanel=new JPanel();
 						mainApplet applet = new mainApplet();
 						applet.setUpperapplet(panel.getapplet());
@@ -83,16 +88,22 @@ public class MyWindow extends JFrame implements ActionListener{
 					System.exit(0);
 				}else if(event.getSource() == item[0]){
 					menu.setText("   GEPT Beginner   ");
+					this.start=0;
 				}else if(event.getSource() == item[1]){
 					menu.setText("GEPT Intermediate");
+					this.start=1;
 				}else if(event.getSource() == item[2]){
 					menu.setText("  GEPT Advanced  ");
+					this.start=2;
 				}else if(event.getSource() == item[3]){
 					menu.setText("          TOEIC          ");
+					this.start=3;
 				}else if(event.getSource() == item[4]){
 					menu.setText("          TOFEL          ");
+					this.start=4;
 				}else if(event.getSource() == item[5]){
 					menu.setText("            GRE            ");
+					this.start=5;
 				}
 		}
 	

@@ -35,6 +35,7 @@ public class Upperapplet extends PApplet{
 	  private int score=0;
 	  private int skipchance=3;
 	  private int combo=0;
+	  private int start;
 		
 	  public int getcombo(){
 		  return this.combo;
@@ -54,6 +55,9 @@ public class Upperapplet extends PApplet{
 		public void addskipchance(int i){
 			this.skipchance=this.skipchance+i;
 		}
+		public void setdata(int start){
+			this.start=start;
+		}
 		
 	public void setup() {
 		System.out.println("HelloWorld");
@@ -66,8 +70,9 @@ public class Upperapplet extends PApplet{
 		myFont = createFont("標楷體",100);
 		  /* 直接輸入字型名稱，只要電腦有安裝該自行即可顯示 */
 		  textFont(myFont);
+		  
 
-		loadData();
+		loadData(start);
 		if(questionac.size()<1){
 			question temp=questionlist.get(qindex);
 			questionac.add(temp);
@@ -150,9 +155,22 @@ public class Upperapplet extends PApplet{
 	/*
 	 * Load the data here.
 	 */
-	private void loadData(){
-
+	private void loadData(int start){
+		
+		
+		if(start==0){
 		data = loadJSONObject("resources/gept-basic.json");
+		}else if(start==1){
+			data = loadJSONObject("resources/gept-medium.json");
+		}else if(start==2){
+			data = loadJSONObject("resources/gept-High_medium.json");
+		}else if(start==3){
+			data = loadJSONObject("resources/gept-High_medium.json");
+		}else if(start==4){
+			data = loadJSONObject("resources/TOEIC.json");
+		}else if(start==4){
+			data = loadJSONObject("resources/TOFEL.json");
+		}
 	    localword=data.getJSONArray("engword");
 		word=data.getJSONArray("locword");
 		for(int i=0;i<word.size();i++)
