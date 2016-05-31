@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import javax.swing.JFrame;
+
 import controlP5.ControlP5;
 
 import processing.core.PApplet;
@@ -17,7 +19,8 @@ import processing.data.JSONObject;
 @SuppressWarnings("serial")
 public class Upperapplet extends PApplet{
 //	private String path = "gept-basic.json";
-    mainApplet low;
+   JFrame window;
+	mainApplet low;
     private ArrayList<question> questionlist;
     private ArrayList<question> questionac;
 //	private String file = "main/resources/data.json";
@@ -77,29 +80,37 @@ public class Upperapplet extends PApplet{
 		cp5=new ControlP5(this);
 		cp5.addButton("skip").setLabel("skip").setPosition(1000,10).setSize(100, 40);
 		cp5.addButton("more").setLabel("more").setPosition(1000,10+50).setSize(100, 40);
-		cp5.addButton("doom").setLabel("Doom!").setPosition(1000,10+100).setSize(100, 40);
+		cp5.addButton("doom").setLabel("DOOM!").setPosition(1000,10+100).setSize(100, 40);
+		cp5.addButton("menu").setLabel("Setting").setPosition(1000,10+150).setSize(100, 40);
 		myFont = createFont("標楷體",100);
 		  /* 直接輸入字型名稱，只要電腦有安裝該自行即可顯示 */
 		  textFont(myFont);
 		  
 
 		loadData(start);
-		if(questionac.size()<1){
-			question temp=questionlist.get(qindex);
-			questionac.add(temp);
-			
-			
-			
-		}
+		
 		
 		smooth();
 	}
 
+	 @SuppressWarnings("deprecation")
+	public void menu(){
+		 if(!this.window.isVisible())
+		 {
+			 this.window.show();
+		 
+		 }else{
+			 this.window.dispose();
+		 }
+	 }
 	public void more(){
+		if(this.getcombo()>1){
 		this.addqindex();
 		question temp=questionlist.get(qindex);
 		questionac.add(temp);	
 		this.clear();
+		this.combo=this.combo-2;
+		}
 		
 	}
 	public void skip(){
@@ -173,8 +184,9 @@ public class Upperapplet extends PApplet{
 	/*
 	 * Load the data here.
 	 */
-	private void loadData(int start){
-		
+	public void loadData(int start){
+		this.questionlist.clear();
+		this.questionac.clear();
 		
 		if(start==0){
 		data = loadJSONObject("resources/gept-basic.json");
@@ -201,7 +213,13 @@ public class Upperapplet extends PApplet{
 			questionlist.add(current);
 		}
 		
-
+		if(questionac.size()<1){
+			question temp=questionlist.get(qindex);
+			questionac.add(temp);
+			
+			
+			
+		}
 		
 		 
 		

@@ -77,10 +77,10 @@ public class mainApplet extends PApplet{
 
 		this.fill(0,0,0);
 		textSize(26);
-		this.text("輸入對應的英文單字，在滾輪滑過磚塊時按下ENTER鍵以消除並獲取分數",100,200);
-		this.text("開頭需大寫，add可增加螢幕上顯示的單字量，skip可隨機跳過一字",100,250);
-		this.text("Doom可以在combo>=10時摧毀所有磚塊，然而並不會因此獲得分數且消耗所有combo",100,300);
-		this.text("藍色方塊可獲得跳過機會以及額外分數，綠色可加快滾軸，灰色會使滾軸速度下降",150,350);
+		this.text("輸入對應的英文單字，在滾輪滑過磚塊時按下ENTER鍵以消除並獲取分數",100,230);
+		this.text("開頭需大寫，add可消耗2combo來額外增加螢幕上顯示的單字量，skip可隨機跳過一字",100,260);
+		this.text("Doom可以在combo>=10時摧毀所有磚塊，然而並不會因此獲得分數且消耗所有combo",100,290);
+		this.text("藍色方塊可獲得跳過機會，綠色可加快滾軸，灰色會使滾軸速度下降,特殊磚塊皆可獲得額外分數",70,320);
 		
 		GregorianCalendar g = new GregorianCalendar(); 		//block
 		

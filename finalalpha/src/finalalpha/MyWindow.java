@@ -13,7 +13,7 @@ public class MyWindow extends JFrame implements ActionListener{
 		private JMenuItem[] item;
 		private JMenuBar bar;
 		private int start;
-		
+		 MyPanel panel;
 		public int getstart(){
 			return this.start;
 		}
@@ -63,10 +63,11 @@ public class MyWindow extends JFrame implements ActionListener{
 					final int windowWidth = 1200;
 					final int windowHeight = 900; 
 					this.dispose();
-					  MyPanel panel=new MyPanel(this.getstart());
+					  panel=new MyPanel(this.getstart());
 						JPanel lowpanel=new JPanel();
 						mainApplet applet = new mainApplet();
 						panel.getapplet().setlow(applet);
+						panel.getapplet().window=this;
 						applet.setUpperapplet(panel.getapplet());
 						applet.init();
 						applet.start();
@@ -90,21 +91,45 @@ public class MyWindow extends JFrame implements ActionListener{
 				}else if(event.getSource() == item[0]){
 					menu.setText("   GEPT Beginner   ");
 					this.start=0;
+					if(panel!=null)
+					{
+						this.panel.getapplet().loadData(this.start);
+					}
 				}else if(event.getSource() == item[1]){
 					menu.setText("GEPT Intermediate");
 					this.start=1;
+					if(panel!=null)
+					{
+						this.panel.getapplet().loadData(this.start);
+					}
 				}else if(event.getSource() == item[2]){
 					menu.setText("  GEPT Advanced  ");
 					this.start=2;
+					if(panel!=null)
+					{
+						this.panel.getapplet().loadData(this.start);
+					}
 				}else if(event.getSource() == item[3]){
 					menu.setText("          TOEIC          ");
 					this.start=3;
+					if(panel!=null)
+					{
+						this.panel.getapplet().loadData(this.start);
+					}
 				}else if(event.getSource() == item[4]){
 					menu.setText("          TOFEL          ");
 					this.start=4;
+					if(panel!=null)
+					{
+						this.panel.getapplet().loadData(this.start);
+					}
 				}else if(event.getSource() == item[5]){
 					menu.setText("            GRE            ");
 					this.start=5;
+					if(panel!=null)
+					{
+						this.panel.getapplet().loadData(this.start);
+					}
 				}
 		}
 	
