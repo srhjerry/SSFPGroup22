@@ -43,7 +43,7 @@ public class Upperapplet extends PApplet{
 	private int qindex=0;
 	  private int score=0;
 	  private int skipchance=3;
-	  private int combo=10;
+	  private int combo=0;
 	  private int start;
 	  private boolean doomsayer=false;
 	  public void setlow(mainApplet applet){
