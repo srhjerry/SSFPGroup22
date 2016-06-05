@@ -10,6 +10,10 @@ import java.util.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import ddf.minim.AudioInput;
+import ddf.minim.AudioSample;
+import ddf.minim.Minim;
+
 /*
 import processing.awt.PSurfaceAWT;
 import processing.awt.PSurfaceAWT.SmoothCanvas;
@@ -27,6 +31,8 @@ public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListen
     private JPanel Southpanel;
     private boolean start=false;
     private mainApplet low;
+    
+    
   
 	public Upperapplet getapplet(){
 		return this.applet;
@@ -34,6 +40,7 @@ public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListen
 	
 	public MyPanel(int start){
 	//   questionlist=new ArrayList<question>(); 
+		
 	   this.textfield=new JTextField();
 	   this.textfield.setSize(1000, 100);
 	   this.textfield.setEditable(true);
@@ -53,12 +60,12 @@ public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListen
 	   this.applet.setFocusable(true);
 		 this.setLayout(new BorderLayout());
 		this.add(this.applet,BorderLayout.CENTER);
-	  
-	   this.add(Southpanel,BorderLayout.SOUTH);
 	   this.applet.init();
 	   this.applet.start();
 		//applet.start();
 		this.applet.setFocusable(true);
+	  
+	   this.add(Southpanel,BorderLayout.SOUTH);
 	  
 		this.setVisible(true);
 	}
@@ -92,6 +99,7 @@ public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListen
 	public void pressed(){
 		String temp=textfield.getText();
 			if(this.applet.checkac(temp)){
+				this.applet.click.trigger();
 				this.applet.removequestionac(temp);
 				this.applet.addqindex();
 				this.applet.addquestionac(this.applet.getquestionlist().get(this.applet.getqindex()));

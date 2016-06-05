@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
+import ddf.minim.AudioPlayer;
+import ddf.minim.AudioSample;
+import ddf.minim.Minim;
 import de.looksgood.ani.Ani;
 import processing.core.PApplet;
 import processing.core.PFont;
@@ -20,6 +23,11 @@ public class mainApplet extends PApplet{
 	//private Object barctlock=new Object();
 	Random r = new Random();
 	PFont myFont;
+	
+	Minim minim;
+    AudioSample upgrade;
+    AudioPlayer ending;
+	
 	public void setUpperapplet(Upperapplet applet)
 	{
 		this.upperapplet=applet;
@@ -50,6 +58,9 @@ public class mainApplet extends PApplet{
 	public void setup(){
 		size(1200, 400);
 		Ani.init(this);
+		minim=new Minim(this);
+		upgrade=minim.loadSample("resources/093.wav");
+		ending=minim.loadFile("resources/boss2.wav");
 		x1 = 100; y1 = 100;
 		x2 = 100; y2 = 70;
 		blocks.add(new block(this,x2,100));
@@ -166,16 +177,19 @@ public class mainApplet extends PApplet{
 				{
 					upperapplet.addskipchance(1);
 					this.upperapplet.addscore(3-1);
+					this.upgrade.trigger();
 				}else if(blocks.get(j).getcolor()==1)
 				{
 					if((this.green-this.black)<4){
 					this.green++;
 					}
 					this.upperapplet.addscore(3-1);
+					this.upgrade.trigger();
 				}else if(blocks.get(j).getcolor()==2)
 				{
 					this.black++;
 					this.upperapplet.addscore(3-1);
+					
 				}
 				blocks.remove(j);
 				this.upperapplet.addcombo(1);
@@ -198,8 +212,10 @@ public class mainApplet extends PApplet{
 		strokeWeight(10);
 		stroke(167);
 		rect(x1, y1, rectWidth, rectHeight);		//x:100~1100
-		
-		
+		upperapplet.bgm1.close();;
+		if(!ending.isPlaying()){
+			ending.play();
+		}
 		strokeWeight(3);stroke(0);
 		
 		blocks_end = blocks;

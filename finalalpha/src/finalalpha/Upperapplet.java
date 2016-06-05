@@ -7,7 +7,7 @@ import java.util.Random;
 import javax.swing.JFrame;
 
 import controlP5.ControlP5;
-
+import ddf.minim.*;
 import processing.core.PApplet;
 import processing.core.PFont;
 
@@ -25,7 +25,13 @@ public class Upperapplet extends PApplet{
     private ArrayList<question> questionac;
 //	private String file = "main/resources/data.json";
 	private Random ran = new Random();
-	
+
+	Minim minim;
+    AudioSample click;
+    AudioSample dooom;
+    AudioSample skipp;
+    AudioPlayer bgm1;
+    
 	JSONObject data;
 	JSONObject voc;
 	JSONArray word, localword;
@@ -37,7 +43,7 @@ public class Upperapplet extends PApplet{
 	private int qindex=0;
 	  private int score=0;
 	  private int skipchance=3;
-	  private int combo=0;
+	  private int combo=10;
 	  private int start;
 	  private boolean doomsayer=false;
 	  public void setlow(mainApplet applet){
@@ -72,9 +78,21 @@ public class Upperapplet extends PApplet{
 			this.start=start;
 		}
 		
+		
 	public void setup() {
 		System.out.println("HelloWorld");
+		
+		
 		size(1200, 570);
+		minim=new Minim(this);
+		
+		bgm1=minim.loadFile("resources/boss1.wav");
+		bgm1.loop();
+		bgm1.play();
+		 click = minim.loadSample("resources/031.wav");
+		 skipp = minim.loadSample("resources/m_join.wav");
+		 dooom=minim.loadSample("resources/020.wav");
+		 if ( click == null ) System.out.println("Didn't get kick!");
 		questionlist = new ArrayList<question>();
 		questionac = new ArrayList<question>();
 		cp5=new ControlP5(this);
@@ -105,6 +123,7 @@ public class Upperapplet extends PApplet{
 	 }
 	public void more(){
 		if(this.getcombo()>1){
+			this.skipp.trigger();
 		this.addqindex();
 		question temp=questionlist.get(qindex);
 		questionac.add(temp);	
@@ -115,6 +134,7 @@ public class Upperapplet extends PApplet{
 	}
 	public void skip(){
 		if(this.skipchance>0){
+			this.skipp.trigger();
 		Iterator<question> aciter=questionac.iterator();
 		if(aciter.hasNext()){
 		question temp=aciter.next();
@@ -128,9 +148,11 @@ public class Upperapplet extends PApplet{
 	}
 	public void doom(){
 		if(combo>=10){
+			dooom.trigger();
 			this.low.blocks.clear();
 			this.combo=0;
 			this.doomsayer=true;
+			
 		}
 	}
 	

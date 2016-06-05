@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
+
 public class MyWindow extends JFrame implements ActionListener{
 
 		private JButton[] button;
@@ -14,13 +17,17 @@ public class MyWindow extends JFrame implements ActionListener{
 		private JMenuBar bar;
 		private int start;
 		 MyPanel panel;
+		Windowsound sound;
+		
 		public int getstart(){
 			return this.start;
 		}
 		
 		public MyWindow(){
-			this.setTitle("HomePage");
+			sound=new Windowsound();
 			
+			this.setTitle("HomePage");
+		
 			button = new JButton[2];
 			item = new JMenuItem[6];
 			button[0] = new JButton("   Single Player   ");
@@ -51,7 +58,8 @@ public class MyWindow extends JFrame implements ActionListener{
 			this.add(button[0]);
 			this.add(bar);
 			this.add(button[1]);
-			
+			sound.init();
+			sound.start();
 			button[0].addActionListener(this);
 			button[1].addActionListener(this);
 			for(int i = 0; i<6; i++)
@@ -61,7 +69,8 @@ public class MyWindow extends JFrame implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 				if(event.getSource() == button[0]){
 					final int windowWidth = 1200;
-					final int windowHeight = 900; 
+					final int windowHeight = 1000; 
+				sound.bgm.pause();
 					this.dispose();
 					  panel=new MyPanel(this.getstart());
 						JPanel lowpanel=new JPanel();
@@ -87,10 +96,16 @@ public class MyWindow extends JFrame implements ActionListener{
 					window2.setVisible(true);
 				}
 				else if(event.getSource() == button[1]){
+					if(panel!=null)
+					{
+						this.dispose();
+					}else{
 					System.exit(0);
+					}
 				}else if(event.getSource() == item[0]){
 					menu.setText("   GEPT Beginner   ");
 					this.start=0;
+					sound.click.trigger();
 					if(panel!=null)
 					{
 						this.panel.getapplet().loadData(this.start);
@@ -98,6 +113,7 @@ public class MyWindow extends JFrame implements ActionListener{
 				}else if(event.getSource() == item[1]){
 					menu.setText("GEPT Intermediate");
 					this.start=1;
+					sound.click.trigger();
 					if(panel!=null)
 					{
 						this.panel.getapplet().loadData(this.start);
@@ -105,6 +121,7 @@ public class MyWindow extends JFrame implements ActionListener{
 				}else if(event.getSource() == item[2]){
 					menu.setText("  GEPT Advanced  ");
 					this.start=2;
+					sound.click.trigger();
 					if(panel!=null)
 					{
 						this.panel.getapplet().loadData(this.start);
@@ -112,6 +129,7 @@ public class MyWindow extends JFrame implements ActionListener{
 				}else if(event.getSource() == item[3]){
 					menu.setText("          TOEIC          ");
 					this.start=3;
+					sound.click.trigger();
 					if(panel!=null)
 					{
 						this.panel.getapplet().loadData(this.start);
@@ -119,6 +137,7 @@ public class MyWindow extends JFrame implements ActionListener{
 				}else if(event.getSource() == item[4]){
 					menu.setText("          TOFEL          ");
 					this.start=4;
+					sound.click.trigger();
 					if(panel!=null)
 					{
 						this.panel.getapplet().loadData(this.start);
@@ -126,6 +145,7 @@ public class MyWindow extends JFrame implements ActionListener{
 				}else if(event.getSource() == item[5]){
 					menu.setText("            GRE            ");
 					this.start=5;
+					sound.click.trigger();
 					if(panel!=null)
 					{
 						this.panel.getapplet().loadData(this.start);
