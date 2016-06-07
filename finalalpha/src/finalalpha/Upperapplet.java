@@ -163,7 +163,7 @@ public class Upperapplet extends PApplet{
 		}
 	}
 	public void doom(){
-		if(combo>=10){
+		if(combo>=8){
 			dooom.trigger();
 			this.low.blocks.clear();
 			this.combo=0;
