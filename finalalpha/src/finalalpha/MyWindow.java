@@ -18,6 +18,7 @@ public class MyWindow extends JFrame implements ActionListener{
 		private int start;
 		 MyPanel panel;
 		Windowsound sound;
+		JFrame window2;
 		
 		public int getstart(){
 			return this.start;
@@ -68,6 +69,19 @@ public class MyWindow extends JFrame implements ActionListener{
 			
 		public void actionPerformed(ActionEvent event){
 				if(event.getSource() == button[0]){
+					if(panel!=null)
+					{
+						panel.getapplet().bgm1.close();
+						panel.removeAll();
+						panel.setEnabled(false);
+						
+					}
+					if(window2!=null){
+						window2.dispose();
+						
+						window2=null;
+					}
+					
 					final int windowWidth = 1200;
 					final int windowHeight = 1000; 
 				sound.bgm.pause();
@@ -83,7 +97,7 @@ public class MyWindow extends JFrame implements ActionListener{
 						applet.setFocusable(true);
 						lowpanel.add(applet);
 
-					  JFrame window2 = new JFrame("GAMING");
+					  window2 = new JFrame("GAMING");
 				//	window2.setLayout(new GridLayout(2,1));
 					  window2.setLayout(new BorderLayout());
 					window2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -96,7 +110,7 @@ public class MyWindow extends JFrame implements ActionListener{
 					window2.setVisible(true);
 				}
 				else if(event.getSource() == button[1]){
-					if(panel!=null)
+					if(panel!=null && !panel.getapplet().getstate())
 					{
 						this.dispose();
 					}else{

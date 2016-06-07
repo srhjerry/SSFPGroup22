@@ -227,6 +227,6 @@ public class mainApplet extends PApplet{
 		fill(87,255,87);		//°Ê·P´Î´Î
 		rect(x2, y2, 10, 130);
 		Ani.killAll();
-		
+		upperapplet.ending();
 	}
 }

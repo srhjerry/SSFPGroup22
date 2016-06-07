@@ -25,6 +25,7 @@ public class Upperapplet extends PApplet{
     private ArrayList<question> questionac;
 //	private String file = "main/resources/data.json";
 	private Random ran = new Random();
+	private boolean isending=false;
 
 	Minim minim;
     AudioSample click;
@@ -48,6 +49,13 @@ public class Upperapplet extends PApplet{
 	  private boolean doomsayer=false;
 	  public void setlow(mainApplet applet){
 		  this.low=applet;
+	  }
+	  public void ending(){
+		  isending=true;
+		  window.show();
+	  }
+	  public boolean getstate(){
+		  return this.isending;
 	  }
 	public boolean getdoom(){
 		return this.doomsayer;
@@ -174,7 +182,8 @@ public class Upperapplet extends PApplet{
 			this.text("Score: "+this.getscore(),0,50);
 			this.text("SkipChance: "+this.skipchance,0,100);
 			this.text("Combo: "+this.getcombo(),0,150);
-		  
+		  if(isending){}
+		  else{
 		  Iterator<question> iterator = questionac.iterator();
 		  while(iterator.hasNext()){
 			  question temp=iterator.next();
@@ -195,6 +204,7 @@ public class Upperapplet extends PApplet{
 				}else if(temp.gety()<=0 && temp.getdirection()==1){
 					temp.setdirection(0);
 				}
+		  }
 		  }
 	}
 	
