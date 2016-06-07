@@ -21,6 +21,7 @@ public class mainApplet extends PApplet{
 	private boolean end = true;
 	private boolean barct=false;
 	private boolean trueend=false;
+	private boolean endonce=true;
 	//private Object barctlock=new Object();
 	Random r = new Random();
 	PFont myFont;
@@ -88,6 +89,9 @@ public class mainApplet extends PApplet{
 		rect(x1, y1, rectWidth, rectHeight);		//x:100~1100
 
 		this.fill(0,0,0);
+		myFont = createFont("標楷體",100);
+		  /* 直接輸入字型名稱，只要電腦有安裝該自行即可顯示 */
+		  textFont(myFont);
 		textSize(26);
 		this.text("輸入對應的英文單字，在滾輪滑過磚塊時按下ENTER鍵以消除並獲取分數",100,230);
 		this.text("add可消耗2combo來額外增加螢幕上顯示的單字量，skip可隨機跳過一字",100,260);
@@ -156,7 +160,7 @@ public class mainApplet extends PApplet{
 		for(int i=100 ; i<=1100 ; i++){		//end case
 			if(checkfill[i] == false)	end = false;
 		}
-		if(end == true) end();
+		if(end == true ||blocks.size()>18) end();
 		end = true;
 		
 		}
@@ -227,6 +231,9 @@ public class mainApplet extends PApplet{
 		fill(87,255,87);		//動感棒棒
 		rect(x2, y2, 10, 130);
 		Ani.killAll();
+		if(endonce){
 		upperapplet.ending();
+		this.endonce=false;
+		}
 	}
 }

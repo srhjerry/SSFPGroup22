@@ -19,7 +19,7 @@ import processing.data.JSONObject;
 @SuppressWarnings("serial")
 public class Upperapplet extends PApplet{
 //	private String path = "gept-basic.json";
-   JFrame window;
+   MyWindow window;
 	mainApplet low;
     private ArrayList<question> questionlist;
     private ArrayList<question> questionac;
@@ -50,6 +50,9 @@ public class Upperapplet extends PApplet{
 	  public void setlow(mainApplet applet){
 		  this.low=applet;
 	  }
+	  public void setisending(boolean temp){
+			this.isending=temp;
+		}
 	  public void ending(){
 		  isending=true;
 		  window.show();
@@ -62,10 +65,13 @@ public class Upperapplet extends PApplet{
 	}
 	public void setdoom(boolean temp){
 		this.doomsayer=temp;
+		window.setlabel(this.score);
 	}
 	  
 	  public int getcombo(){
+		  window.setlabel(this.score);
 		  return this.combo;
+		  
 	  }
 	  public void addcombo(int i){
 		  this.combo=this.getcombo()+i;
@@ -74,6 +80,7 @@ public class Upperapplet extends PApplet{
 		  this.combo=0;
 	  }
 		public int getscore(){
+			window.setlabel(this.score);
 			return this.score;
 		}
 		public void addscore(int i){
@@ -81,6 +88,7 @@ public class Upperapplet extends PApplet{
 		}
 		public void addskipchance(int i){
 			this.skipchance=this.skipchance+i;
+			window.setlabel(this.score);
 		}
 		public void setdata(int start){
 			this.start=start;
@@ -293,6 +301,7 @@ public class Upperapplet extends PApplet{
 		}
 		return false;
    }
+  
 
 
     public void addquestionlist(String word,String locword){
@@ -303,7 +312,7 @@ public class Upperapplet extends PApplet{
 		while(questionaciter.hasNext())
 		{
 			question temp=questionaciter.next();
-			if(temp.getlocword().equals(locword)){
+			if(temp.getlocword().toLowerCase().equals(locword.toLowerCase())){
 				questionaciter.remove();
 				break;
 			}

@@ -19,6 +19,12 @@ public class MyWindow extends JFrame implements ActionListener{
 		 MyPanel panel;
 		Windowsound sound;
 		JFrame window2;
+		JPanel lowpanel;
+		mainApplet applet;
+		JLabel label=new JLabel("Score: 0");
+		public void setlabel(int score){
+			label.setText("Score: "+score);
+		}
 		
 		public int getstart(){
 			return this.start;
@@ -56,6 +62,7 @@ public class MyWindow extends JFrame implements ActionListener{
 			this.setJMenuBar(bar);
 			
 			this.setLayout(new FlowLayout(FlowLayout.LEFT, 140, 30));
+			this.add(label,BorderLayout.NORTH);
 			this.add(button[0]);
 			this.add(bar);
 			this.add(button[1]);
@@ -71,10 +78,18 @@ public class MyWindow extends JFrame implements ActionListener{
 				if(event.getSource() == button[0]){
 					if(panel!=null)
 					{
+						panel.getapplet().setisending(false);
 						panel.getapplet().bgm1.close();
+						panel.getapplet().destroy();
 						panel.removeAll();
 						panel.setEnabled(false);
 						
+					}
+					if(lowpanel!=null)
+					{
+						applet.destroy();		
+						lowpanel.removeAll();
+								lowpanel.setEnabled(false);
 					}
 					if(window2!=null){
 						window2.dispose();
@@ -87,8 +102,8 @@ public class MyWindow extends JFrame implements ActionListener{
 				sound.bgm.pause();
 					this.dispose();
 					  panel=new MyPanel(this.getstart());
-						JPanel lowpanel=new JPanel();
-						mainApplet applet = new mainApplet();
+						lowpanel=new JPanel();
+						applet = new mainApplet();
 						panel.getapplet().setlow(applet);
 						panel.getapplet().window=this;
 						applet.setUpperapplet(panel.getapplet());

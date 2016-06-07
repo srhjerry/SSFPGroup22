@@ -3,7 +3,9 @@ package finalalpha;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
@@ -31,7 +33,8 @@ public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListen
     private JPanel Southpanel;
     private boolean start=false;
     private mainApplet low;
-    
+    FileWriter fw;
+    BufferedWriter bw;
     
   
 	public Upperapplet getapplet(){
@@ -66,7 +69,16 @@ public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListen
 		this.applet.setFocusable(true);
 	  
 	   this.add(Southpanel,BorderLayout.SOUTH);
-	  
+	   
+	try {
+		fw = new FileWriter("wrongwords.txt",true);
+	        bw=new BufferedWriter(fw);
+	   bw.flush();
+	   
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 		this.setVisible(true);
 	}
 	public void setlow(mainApplet lower){
@@ -100,14 +112,31 @@ public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListen
 		String temp=textfield.getText();
 			if(this.applet.checkac(temp)){
 				this.applet.click.trigger();
-				this.applet.removequestionac(temp);
 				this.applet.addqindex();
+				this.applet.removequestionac(temp);
+				
 				this.applet.addquestionac(this.applet.getquestionlist().get(this.applet.getqindex()));
 				this.applet.removequestionlist(this.applet.getqindex());
 				this.applet.addqindex();
 				low.setbarct(true);
 				this.textfield.setText("");
 			}else{
+				try {
+					bw.write(temp);
+					bw.flush();
+					Iterator<question> questionaciter = applet.getquestionac().iterator();
+					while(questionaciter.hasNext()){
+						question actemp=questionaciter.next();
+						bw.write(" "+actemp.getlocword());
+						bw.flush();
+					}
+					bw.newLine();
+					bw.flush();
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				applet.resetcombo();
 				JOptionPane.showMessageDialog(null," Hint: First word is "+this.applet.getquestionac().get(0).getlocword().charAt(0)+"\n"+"Last word is "+this.applet.getquestionac().get(0).getlocword().charAt(this.applet.getquestionac().get(0).getlocword().length()-1),
                         "Wrong", JOptionPane.WARNING_MESSAGE);
