@@ -124,14 +124,17 @@ public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListen
 				try {
 					bw.write(temp);
 					bw.flush();
+					applet.window.console.append(temp);
 					Iterator<question> questionaciter = applet.getquestionac().iterator();
 					while(questionaciter.hasNext()){
 						question actemp=questionaciter.next();
 						bw.write(" "+actemp.getlocword());
+						applet.window.console.append(" "+actemp.getlocword());
 						bw.flush();
 					}
 					bw.newLine();
 					bw.flush();
+					applet.window.console.append("\n");
 					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

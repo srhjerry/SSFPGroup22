@@ -8,7 +8,7 @@ public class Main {
 		// TODO Auto-generated method stub
 			MyWindow window = new MyWindow();
 			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			window.setSize(400, 300);
+			window.setSize(400, 600);
 			window.setVisible(true);
 	}
 

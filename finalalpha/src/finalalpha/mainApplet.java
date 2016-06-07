@@ -123,7 +123,8 @@ public class mainApplet extends PApplet{
 			//System.out.println(g.get(GregorianCalendar.SECOND) + " " + sec);
 			
 		}
-		strokeWeight(3);stroke(0);
+		strokeWeight(3);
+		stroke(0);
 		for(block b:blocks)
 			b.display();
 		

@@ -16,6 +16,9 @@ public class MyWindow extends JFrame implements ActionListener{
 		private JMenuItem[] item;
 		private JMenuBar bar;
 		private int start;
+		private JScrollPane pane;
+		private JPanel buttonpanel=new JPanel();
+		 JTextArea console;
 		 MyPanel panel;
 		Windowsound sound;
 		JFrame window2;
@@ -57,21 +60,31 @@ public class MyWindow extends JFrame implements ActionListener{
 			menu.add(item[5]);
 			menu.setPopupMenuVisible(true);
 			
+			
+			console=new JTextArea(10,10);
+			console.setEditable(false);
+			pane=new JScrollPane(console);
+			pane.setHorizontalScrollBarPolicy(  JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+			pane.setVerticalScrollBarPolicy(   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
 			bar = new JMenuBar();
 			bar.add(menu);
 			this.setJMenuBar(bar);
 			
 			this.setLayout(new FlowLayout(FlowLayout.LEFT, 140, 30));
-			this.add(label,BorderLayout.NORTH);
+			this.add(label);
 			this.add(button[0]);
 			this.add(bar);
 			this.add(button[1]);
+			this.add(pane);
+			
 			sound.init();
 			sound.start();
 			button[0].addActionListener(this);
 			button[1].addActionListener(this);
 			for(int i = 0; i<6; i++)
 				item[i].addActionListener(this);
+			
+			
 		}
 			
 		public void actionPerformed(ActionEvent event){
