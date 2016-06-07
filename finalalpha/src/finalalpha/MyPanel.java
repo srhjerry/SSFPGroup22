@@ -103,6 +103,7 @@ public class MyPanel extends JPanel implements Runnable,ActionListener,KeyListen
 				this.applet.removequestionac(temp);
 				this.applet.addqindex();
 				this.applet.addquestionac(this.applet.getquestionlist().get(this.applet.getqindex()));
+				this.applet.removequestionlist(this.applet.getqindex());
 				this.applet.addqindex();
 				low.setbarct(true);
 				this.textfield.setText("");

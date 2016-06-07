@@ -3,7 +3,7 @@ package finalalpha;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
-
+import java.util.*;
 import javax.swing.JFrame;
 
 import controlP5.ControlP5;
@@ -236,8 +236,10 @@ public class Upperapplet extends PApplet{
 		}
 		
 		if(questionac.size()<1){
+			qindex=ran.nextInt(questionlist.size());
 			question temp=questionlist.get(qindex);
 			questionac.add(temp);
+			questionlist.remove(qindex);
 			
 			
 			
@@ -252,7 +254,7 @@ public class Upperapplet extends PApplet{
 	}
 	
 	public void addqindex(){
-		this.qindex++;
+		this.qindex=ran.nextInt(this.questionlist.size());
 	}
 	public void newquestion(){
 		this.addquestionac(this.getquestionlist().get(qindex));
@@ -268,11 +270,13 @@ public class Upperapplet extends PApplet{
 	}
 	
    public boolean checkac(String locword){
+	   String tempword;
 	   Iterator<question> questionaciter = questionac.iterator();
 		while(questionaciter.hasNext())
 		{
 			question temp=questionaciter.next();
-			if(temp.getlocword().equals(locword)){
+			tempword=locword.toLowerCase();
+			if(temp.getlocword().toLowerCase().equals(tempword)){
 				return true;
 				
 			}
@@ -316,6 +320,10 @@ public class Upperapplet extends PApplet{
 			}
 			break;
 		}
+	}
+    public void removequestionlist(int index){
+    	
+		questionlist.remove(index);
 	}
     public void addquestionac(String word,String locword){
     	question temp=new question(word,locword);

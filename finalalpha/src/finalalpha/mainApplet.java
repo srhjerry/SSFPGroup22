@@ -20,6 +20,7 @@ public class mainApplet extends PApplet{
 	private int black=0;
 	private boolean end = true;
 	private boolean barct=false;
+	private boolean trueend=false;
 	//private Object barctlock=new Object();
 	Random r = new Random();
 	PFont myFont;
@@ -112,7 +113,7 @@ public class mainApplet extends PApplet{
 				}
 			}
 			sec--;
-			if(n<4){
+			if(n<3){
 				n++;
 			}
 			//System.out.println(g.get(GregorianCalendar.SECOND) + " " + sec);
@@ -172,7 +173,7 @@ public class mainApplet extends PApplet{
 			if(low <= x2 && up >= x2 ){
 				for(int i=low ; i <= up ; i++){
 					checkfill[i] = false;
-				}if(this.getbarct()){
+				}if(this.getbarct() && !trueend){
 				if(blocks.get(j).getcolor()==0)
 				{
 					upperapplet.addskipchance(1);
@@ -207,7 +208,7 @@ public class mainApplet extends PApplet{
 		background(255);
 		textSize(100);
 		text("GameOver QQ",300,300);
-		
+		trueend=true;
 		noFill();				// ¥~®Ø
 		strokeWeight(10);
 		stroke(167);
